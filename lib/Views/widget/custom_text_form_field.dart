@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/Views/constants.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
@@ -62,67 +63,66 @@ class CustomTextFormField extends StatelessWidget {
             validator: validator,
             controller: controller,
             keyboardType: keyboardType,
-            cursorColor: Colors.white,
+            cursorColor: kPrimaryColor,
             decoration: InputDecoration(
-              prefixIcon: prefix == null
-                  ? null
-                  : IconButton(
-                      onPressed: prefixOnPressed,
-                      icon: Icon(prefix),
-                      color: Colors.white,
-                    ),
-              suffixIcon: suffix2 == null
-                  ? IconButton(
-                      iconSize: 24,
-                      onPressed: suffixOnPressed1,
-                      icon: Icon(
-                        suffix1,
+                prefixIcon: prefix == null
+                    ? null
+                    : IconButton(
+                        onPressed: prefixOnPressed,
+                        icon: Icon(prefix),
                         color: Colors.white,
                       ),
-                    )
-                  : Row(
-                      mainAxisSize: MainAxisSize.min, // added line
-                      children: [
-                        IconButton(
-                          iconSize: 24,
-                          onPressed: suffixOnPressed1,
-                          icon: Icon(
-                            suffix1,
-                            color: Colors.white,
-                          ),
+                suffixIcon: suffix2 == null
+                    ? IconButton(
+                        iconSize: 24,
+                        onPressed: suffixOnPressed1,
+                        icon: Icon(
+                          suffix1,
+                          color: Colors.white,
                         ),
-                        IconButton(
-                          iconSize: 24,
-                          onPressed: suffixOnPressed2,
-                          icon: Icon(
-                            suffix2,
-                            color: Colors.white,
+                      )
+                    : Row(
+                        mainAxisSize: MainAxisSize.min, // added line
+                        children: [
+                          IconButton(
+                            iconSize: 24,
+                            onPressed: suffixOnPressed1,
+                            icon: Icon(
+                              suffix1,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-              hintText: hintText,
-              labelText: labelText,
-              labelStyle: const TextStyle(color: Colors.white),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(radius))),
-              border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(radius))),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(radius))),
-              disabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(radius))),
-            ),
+                          IconButton(
+                            iconSize: 24,
+                            onPressed: suffixOnPressed2,
+                            icon: Icon(
+                              suffix2,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                hintText: hintText,
+                // hintStyle: const TextStyle(color: kPrimaryColor),
+                labelText: labelText,
+                labelStyle: const TextStyle(color: Colors.white),
+                enabledBorder: buildBorder(),
+                focusedBorder: buildBorder(kPrimaryColor)),
             obscureText: obscureText,
             onChanged: onChange,
             onFieldSubmitted: onSubmit,
           ),
         ),
       ],
+    );
+  }
+
+  OutlineInputBorder buildBorder([color]) {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: color ?? white, width: 2),
+      borderRadius: BorderRadius.all(
+        Radius.circular(radius),
+      ),
     );
   }
 }
