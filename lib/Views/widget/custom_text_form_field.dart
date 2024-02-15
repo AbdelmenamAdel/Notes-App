@@ -26,9 +26,11 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.prefixOnPressed,
     this.radius = 5,
+    this.maxLines = 1,
   });
   String? labelText;
   double radius;
+  int maxLines;
   String? hintText;
   bool readOnly;
   double? width;
@@ -58,6 +60,7 @@ class CustomTextFormField extends StatelessWidget {
           width: width,
           child: TextFormField(
             readOnly: readOnly,
+            maxLines: maxLines,
             onTap: onTap,
             onSaved: onSaved,
             validator: validator,
