@@ -2,7 +2,7 @@ part of 'add_note_cubit_cubit.dart';
 
 sealed class AddNoteState {}
 
-final class AddNoteCubitInitial extends AddNoteState {}
+final class AddNoteInitial extends AddNoteState {}
 
 final class AddNoteLoadingState extends AddNoteState {}
 
