@@ -63,7 +63,13 @@ class CustomTextFormField extends StatelessWidget {
             maxLines: maxLines,
             onTap: onTap,
             onSaved: onSaved,
-            validator: validator,
+            validator: (value) {
+              if (value?.isEmpty ?? true) {
+                return 'this field is required';
+              } else {
+                return null;
+              }
+            },
             controller: controller,
             keyboardType: keyboardType,
             cursorColor: kPrimaryColor,
@@ -110,6 +116,8 @@ class CustomTextFormField extends StatelessWidget {
                 labelText: labelText,
                 labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: buildBorder(),
+                border: buildBorder(kPrimaryColor),
+                errorBorder: buildBorder(red),
                 focusedBorder: buildBorder(kPrimaryColor)),
             obscureText: obscureText,
             onChanged: onChange,
