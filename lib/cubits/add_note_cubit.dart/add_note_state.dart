@@ -1,4 +1,4 @@
-part of 'add_note_cubit_cubit.dart';
+part of 'add_note_cubit.dart';
 
 sealed class AddNoteState {}
 
