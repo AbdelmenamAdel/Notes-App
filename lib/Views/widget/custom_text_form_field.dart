@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/Views/constants.dart';
+import 'package:notes_app/constants.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
