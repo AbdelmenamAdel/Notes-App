@@ -41,21 +41,18 @@ class NoteItem extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    FontAwesomeIcons.trash,
-                    color: Colors.black,
-                    size: 24,
-                  ),
+                  onPressed: () {
+                    note.delete();
+                  },
+                  icon: const Icon(FontAwesomeIcons.trash,
+                      color: Colors.black, size: 24),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 24),
-                child: Text(
-                  note.date,
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(.4), fontSize: 16),
-                ),
+                child: Text(note.date,
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(.4), fontSize: 16)),
               )
             ],
           ),
