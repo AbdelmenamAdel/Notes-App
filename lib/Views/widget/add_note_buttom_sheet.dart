@@ -19,10 +19,13 @@ class AddNoteButtomSheet extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return const Padding(
-            padding: EdgeInsets.all(24.0),
-            child: SingleChildScrollView(
-              child: AddNoteForm(),
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoadingState ? true : false,
+            child: const Padding(
+              padding: EdgeInsets.all(24.0),
+              child: SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
             ),
           );
         },
