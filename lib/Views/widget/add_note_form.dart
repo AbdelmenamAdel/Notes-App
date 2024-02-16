@@ -4,12 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/Views/widget/custom_button.dart';
 import 'package:notes_app/Views/widget/custom_text_form_field.dart';
 import 'package:notes_app/cubits/add_note_cubit.dart/add_note_cubit.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
 class AddNoteForm extends StatefulWidget {
-  const AddNoteForm({
-    super.key,
-  });
+  const AddNoteForm({super.key});
 
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
