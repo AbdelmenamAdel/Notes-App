@@ -74,20 +74,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
 }
 
 class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
-
+  const ColorItem({super.key, required this.isActive, required this.index});
+  final bool isActive;
+  final int index;
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
+    return CircleAvatar(
       radius: 35,
-      backgroundColor: Colors.blue,
+      backgroundColor: NotesCubit().getColor(index),
+      child: isActive ? const Icon(Icons.check, size: 50) : null,
     );
   }
 }
 
-class ColorsListView extends StatelessWidget {
+class ColorsListView extends StatefulWidget {
   const ColorsListView({super.key});
 
+  @override
+  State<ColorsListView> createState() => _ColorsListViewState();
+}
+
+class _ColorsListViewState extends State<ColorsListView> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -95,9 +103,18 @@ class ColorsListView extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
-        itemBuilder: (context, index) => const Padding(
-          padding: EdgeInsets.all(1.0),
-          child: ColorItem(),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2),
+          child: GestureDetector(
+              onTap: () {
+                NotesCubit().currentIndex = index;
+                currentIndex = index;
+                setState(() {});
+              },
+              child: ColorItem(
+                isActive: currentIndex == index,
+                index: index,
+              )),
         ),
       ),
     );
