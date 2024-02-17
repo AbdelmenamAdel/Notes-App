@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants.dart';
 
 class CustomSearshIcon extends StatelessWidget {
   const CustomSearshIcon({super.key, required this.icon, this.onPressed});
@@ -12,7 +13,13 @@ class CustomSearshIcon extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white.withOpacity(.18),
           borderRadius: BorderRadius.circular(16)),
-      child: IconButton(onPressed: onPressed, icon: Icon(icon, size: 28)),
+      child: IconButton(
+          onPressed: onPressed,
+          icon: Icon(
+            icon,
+            size: 28,
+            color: white,
+          )),
     );
   }
 }

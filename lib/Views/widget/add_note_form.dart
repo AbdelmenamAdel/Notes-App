@@ -59,6 +59,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       color: Colors.blue.value,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                    BlocProvider.of<AddNoteCubit>(context).currentIndex = 0;
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }
@@ -81,7 +82,7 @@ class ColorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 35,
-      backgroundColor: NotesCubit().getColor(index),
+      backgroundColor: AddNoteCubit().getColor(index),
       child: isActive ? const Icon(Icons.check, size: 50) : null,
     );
   }
@@ -95,26 +96,29 @@ class ColorsListView extends StatefulWidget {
 }
 
 class _ColorsListViewState extends State<ColorsListView> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 70,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: 11,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2),
           child: GestureDetector(
-              onTap: () {
-                NotesCubit().currentIndex = index;
-                currentIndex = index;
-                setState(() {});
-              },
-              child: ColorItem(
-                isActive: currentIndex == index,
-                index: index,
-              )),
+            onTap: () {
+              BlocProvider.of<AddNoteCubit>(context).currentIndex = index;
+              BlocProvider.of<AddNoteCubit>(context).color =
+                  BlocProvider.of<AddNoteCubit>(context).getColor(index);
+
+              setState(() {});
+            },
+            child: ColorItem(
+              isActive:
+                  BlocProvider.of<AddNoteCubit>(context).currentIndex == index,
+              index: index,
+            ),
+          ),
         ),
       ),
     );

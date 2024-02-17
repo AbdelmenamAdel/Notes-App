@@ -12,12 +12,8 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EditNotesView(note: note),
-          ),
-        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => EditNotesView(note: note)));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -34,7 +30,7 @@ class NoteItem extends StatelessWidget {
                   note.title,
                   style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 26,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold),
                 ),
                 subtitle: Padding(
@@ -42,7 +38,7 @@ class NoteItem extends StatelessWidget {
                   child: Text(
                     note.content,
                     style: TextStyle(
-                        color: Colors.black.withOpacity(.5), fontSize: 18),
+                        color: Colors.black.withOpacity(.5), fontSize: 24),
                   ),
                 ),
                 trailing: IconButton(
