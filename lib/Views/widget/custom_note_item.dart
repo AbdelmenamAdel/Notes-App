@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/Views/edit_notes_view.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/methods.dart';
 import 'package:notes_app/models/note_model.dart';
 
 class NoteItem extends StatelessWidget {
@@ -30,21 +32,29 @@ class NoteItem extends StatelessWidget {
                   note.title,
                   style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 32,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
                 subtitle: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Text(
                     note.content,
                     style: TextStyle(
-                        color: Colors.black.withOpacity(.5), fontSize: 24),
+                        color: Colors.black.withOpacity(.5), fontSize: 12),
                   ),
                 ),
                 trailing: IconButton(
                   onPressed: () {
-                    note.delete();
-                    BlocProvider.of<NotesCubit>(context).fetchAllNote();
+                    cupertinoDialog(
+                      context,
+                      'delete',
+                      () {
+                        Navigator.pop(context, 'Yes');
+                        note.delete();
+                        BlocProvider.of<NotesCubit>(context).fetchAllNote();
+                        showSnackBar('deleted', 'Yes', context);
+                      },
+                    );
                   },
                   icon: const Icon(FontAwesomeIcons.trash,
                       color: Colors.black, size: 24),
